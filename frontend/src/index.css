@@ -691,8 +691,12 @@ tr:last-child td {
     overflow-x: hidden;
   }
 
+  .main-content {
+    padding: 16px;
+  }
+  
   .top-navbar {
-    padding: 0 16px;
+    padding: 12px 16px;
     height: 60px;
   }
 

@@ -154,28 +154,26 @@ export default function AdminAttendance() {
       )}
 
       <div className="card" style={{ padding: "24px", marginBottom: "24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <label style={{ fontWeight: 600, color: "var(--text-main)" }}>Filter Tanggal:</label>
-            <div style={{ width: "200px" }}>
-              <DatePicker
-                selected={filterDate}
-                onChange={(d) => setFilterDate(d)}
-                className="input-field"
-                placeholderText="dd/mm/yyyy"
-                dateFormat="dd/MM/yyyy"
-              />
-            </div>
-            <button 
-              className="btn-outline" 
-              onClick={fetchRecords} 
-              disabled={isLoading}
-              style={{ padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}
-            >
-              <RefreshCw size={18} className={isLoading ? "spin" : ""} />
-              Muat Ulang
-            </button>
+        <div className="filter-group">
+          <label style={{ fontWeight: 600, color: "var(--text-main)" }}>Filter Tanggal:</label>
+          <div style={{ width: "200px" }}>
+            <DatePicker
+              selected={filterDate}
+              onChange={(d) => setFilterDate(d)}
+              className="input-field"
+              placeholderText="dd/mm/yyyy"
+              dateFormat="dd/MM/yyyy"
+            />
           </div>
+          <button 
+            className="btn-outline" 
+            onClick={fetchRecords} 
+            disabled={isLoading}
+            style={{ padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}
+          >
+            <RefreshCw size={18} className={isLoading ? "spin" : ""} />
+            Muat Ulang
+          </button>
         </div>
       </div>
 
@@ -265,7 +263,7 @@ export default function AdminAttendance() {
         <h3>Export Rekap Presensi</h3>
         <p style={{ fontSize: 14, marginBottom: 20 }}>Pilih rentang tanggal, lalu unduh rekap presensi dalam berkas Excel</p>
         
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+        <div className="filter-group">
           <div style={{ width: "200px" }}>
             <DatePicker
               selected={rekapRange.tanggal_awal}
@@ -283,6 +281,7 @@ export default function AdminAttendance() {
               className="input-field"
               placeholderText="dd/mm/yyyy"
               dateFormat="dd/MM/yyyy"
+              minDate={rekapRange.tanggal_awal}
             />
           </div>
           <button 
@@ -293,7 +292,7 @@ export default function AdminAttendance() {
             disabled={isUpdating === "export"}
           >
             <Download size={18} />
-            {isUpdating === "export" ? "Mengunduh..." : "Export Excel"}
+            {isUpdating === "export" ? "Memproses..." : "Export Excel"}
           </button>
         </div>
       </div>
