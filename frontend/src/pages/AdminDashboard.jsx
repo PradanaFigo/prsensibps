@@ -286,14 +286,14 @@ export default function AdminDashboard() {
       )}
 
       {/* ADMIN BANNER */}
-      <div style={{ backgroundColor: "#fef3c7", color: "var(--primary-blue)", padding: "24px 32px", borderRadius: "var(--radius-md)", marginBottom: "24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="location-card-content" style={{ backgroundColor: "#fef3c7", color: "var(--primary-blue)", padding: "24px 32px", borderRadius: "var(--radius-md)", marginBottom: "24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <h3 style={{ margin: 0, fontWeight: 600 }}>Administrator Dashboard</h3>
           <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: "14px" }}>Kelola semua data presensi dan akun pengguna</p>
         </div>
         <button 
           className="btn-outline" 
-          style={{ borderColor: "rgba(194, 143, 50, 0.3)", color: "var(--primary-blue)" }}
+          style={{ borderColor: "rgba(194, 143, 50, 0.3)", color: "var(--primary-blue)", whiteSpace: "nowrap" }}
           onClick={() => setShowPasswordModal(true)}
         >
           Ganti Password

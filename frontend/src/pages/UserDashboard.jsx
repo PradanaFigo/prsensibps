@@ -308,9 +308,9 @@ export default function UserDashboard() {
       )}
 
       {/* Location Card Area (Membentang Penuh) */}
-      <div style={{ backgroundColor: "#fef3c7", color: "var(--primary-blue)", padding: "32px", borderRadius: "var(--radius-md)", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
+      <div className="location-card-content" style={{ backgroundColor: "#fef3c7", color: "var(--primary-blue)", padding: "32px", borderRadius: "var(--radius-md)", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div style={{ width: "64px", height: "64px", borderRadius: "50%", border: "2px solid rgba(194, 143, 50, 0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ width: "64px", height: "64px", borderRadius: "50%", border: "2px solid rgba(194, 143, 50, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
             <div style={{ width: "8px", height: "8px", backgroundColor: "var(--primary-blue)", borderRadius: "50%" }}></div>
           </div>
           <div>
@@ -320,17 +320,17 @@ export default function UserDashboard() {
         </div>
         <button 
           className="btn-outline" 
-          style={{ borderColor: "rgba(194, 143, 50, 0.3)", color: "var(--primary-blue)" }}
+          style={{ borderColor: "rgba(194, 143, 50, 0.3)", color: "var(--primary-blue)", whiteSpace: "nowrap" }}
           onClick={() => setShowPasswordModal(true)}
         >
           Ganti Password
         </button>
       </div>
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", alignItems: "flex-start" }}>
+      <div className="dashboard-columns">
         
         {/* KOLOM KIRI (Aksi Utama & Aktivitas) */}
-        <div style={{ flex: "1 1 550px", display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div className="dashboard-col-left">
 
           {/* Tombol Absen */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px" }}>
@@ -425,7 +425,7 @@ export default function UserDashboard() {
         </div>
 
         {/* KOLOM KANAN (Kalender) */}
-        <div style={{ flex: "1 1 280px" }}>
+        <div className="dashboard-col-right">
           {renderCalendar()}
         </div>
         
