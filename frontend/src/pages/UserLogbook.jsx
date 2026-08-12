@@ -139,7 +139,7 @@ export default function UserLogbook() {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "24px" }}>
+      <div className="dashboard-grid">
         
         {/* Form Isi Logbook */}
         <div className="card" style={{ alignSelf: "start" }}>

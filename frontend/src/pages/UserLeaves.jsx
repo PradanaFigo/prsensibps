@@ -53,7 +53,7 @@ export default function UserLeaves() {
 
   return (
     <Layout title="Izin & Sakit" role="user" userName={userName}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "24px" }}>
+      <div className="dashboard-grid">
         
         {/* Form Pengajuan */}
         <div className="card" style={{ alignSelf: "start" }}>

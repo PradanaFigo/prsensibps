@@ -396,7 +396,7 @@ export default function AdminDashboard() {
           <h3>Manajemen Akun</h3>
           <p style={{ fontSize: 14, marginBottom: 20 }}>Kelola akun admin dan peserta magang</p>
           
-          <form onSubmit={handleCreateUser} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "24px", alignItems: "end" }}>
+          <form onSubmit={handleCreateUser} className="form-grid" style={{ marginBottom: "24px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase" }}>Nama Lengkap</label>
               <input

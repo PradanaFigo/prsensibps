@@ -103,31 +103,29 @@ export default function AdminLogbook() {
 
       {/* CARD 1: Filter Tanggal */}
       <div className="card" style={{ padding: "24px", marginBottom: "24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <label style={{ fontWeight: 600, color: "var(--text-main)" }}>Filter Tanggal:</label>
-            <div style={{ width: "200px" }}>
-              <DatePicker
-                selected={filterDate}
-                onChange={(d) => {
-                  setFilterDate(d);
-                  loadLogbooks(d);
-                }}
-                className="input-field"
-                placeholderText="Semua Tanggal"
-                dateFormat="dd/MM/yyyy"
-              />
-            </div>
-            <button 
-              className="btn-outline" 
-              onClick={() => loadLogbooks(filterDate)} 
-              disabled={isLoading}
-              style={{ padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}
-            >
-              <RefreshCw size={18} className={isLoading ? "spin" : ""} />
-              Muat Ulang
-            </button>
+        <div className="filter-group">
+          <label style={{ fontWeight: 600, color: "var(--text-main)" }}>Filter Tanggal:</label>
+          <div style={{ width: "200px" }}>
+            <DatePicker
+              selected={filterDate}
+              onChange={(d) => {
+                setFilterDate(d);
+                loadLogbooks(d);
+              }}
+              className="input-field"
+              placeholderText="Semua Tanggal"
+              dateFormat="dd/MM/yyyy"
+            />
           </div>
+          <button 
+            className="btn-outline" 
+            onClick={() => loadLogbooks(filterDate)} 
+            disabled={isLoading}
+            style={{ padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}
+          >
+            <RefreshCw size={18} className={isLoading ? "spin" : ""} />
+            Muat Ulang
+          </button>
         </div>
       </div>
 
@@ -181,7 +179,7 @@ export default function AdminLogbook() {
         <h3>Export Rekap Logbook</h3>
         <p style={{ fontSize: 14, marginBottom: 20 }}>Pilih rentang tanggal, lalu unduh rekap logbook dalam berkas Excel</p>
         
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+        <div className="filter-group">
           <div style={{ width: "200px" }}>
             <DatePicker
               selected={exportRange.tanggal_awal}
