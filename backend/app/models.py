@@ -17,6 +17,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
 from app.database import Base
+from app.utils.timezone import get_now_wib
 
 
 class RoleEnum(str, enum.Enum):
@@ -51,7 +52,7 @@ class User(Base):
     role = Column(Enum(RoleEnum), nullable=False, default=RoleEnum.user)
     is_deleted = Column(Boolean, default=False, nullable=False)
     created_by = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=get_now_wib)
 
     attendances = relationship("Attendance", back_populates="user")
     leave_requests = relationship("LeaveRequest", back_populates="user", foreign_keys="LeaveRequest.user_id")
@@ -76,7 +77,7 @@ class Attendance(Base):
     jarak_pulang = Column(Float, nullable=True)
     
     status = Column(Enum(AttendanceStatusEnum), nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
+    created_at = Column(DateTime, default=get_now_wib)
 
     user = relationship("User", back_populates="attendances")
 
@@ -94,7 +95,7 @@ class LeaveRequest(Base):
     diproses_oleh = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
     diproses_pada = Column(DateTime, nullable=True)
     
-    diajukan_pada = Column(DateTime, default=datetime.utcnow)
+    diajukan_pada = Column(DateTime, default=get_now_wib)
 
     user = relationship("User", back_populates="leave_requests", foreign_keys=[user_id])
     admin = relationship("User", foreign_keys=[diproses_oleh])

@@ -13,6 +13,7 @@ from app.database import get_db
 from app.models import Logbook, RoleEnum, User
 from app.schemas import LogbookCreate, LogbookUpdate, LogbookOut
 from app.auth import get_current_user, require_admin
+from app.utils.timezone import get_today_wib
 
 router = APIRouter(prefix="/logbook", tags=["Logbook"])
 

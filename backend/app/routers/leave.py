@@ -1,7 +1,7 @@
 import uuid
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
-from datetime import datetime
+from app.utils.timezone import get_now_wib
 
 from app.auth import get_current_user, require_admin
 from app.database import get_db
@@ -73,7 +73,7 @@ def proses_izin(
 
     leave_req.status_approval = payload.status
     leave_req.diproses_oleh = admin_user.id
-    leave_req.diproses_pada = datetime.utcnow()
+    leave_req.diproses_pada = get_now_wib()
 
     # Jika ditolak otomatis alpa (atau jika disetujui, bisa juga di insert ke table attendance)
     # Ini tergantung kebutuhan bisnis. Mari kita buat entri di attendance.
@@ -93,4 +93,3 @@ def proses_izin(
     db.commit()
     db.refresh(leave_req)
     return leave_req
-

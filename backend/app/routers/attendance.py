@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -9,6 +7,7 @@ from app.database import get_db
 from app.models import Attendance, AttendanceStatusEnum, User, AppSetting
 from app.schemas import AttendanceCreate, AttendanceOut
 from app.utils.geo import haversine_meters
+from app.utils.timezone import get_now_wib, get_today_wib
 
 router = APIRouter(prefix="/attendance", tags=["Absensi"])
 
@@ -19,7 +18,7 @@ def absen_masuk(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    today = datetime.now().date()
+    today = get_today_wib()
 
     already = (
         db.query(Attendance)
@@ -43,7 +42,7 @@ def absen_masuk(
             detail=f"Anda berada di luar area kantor (jarak {int(jarak)} meter dari kantor. Batas: {int(allowed_radius)}m)",
         )
 
-    now = datetime.now()
+    now = get_now_wib()
     
     # Check dynamic setting first
     setting = db.query(AppSetting).filter(AppSetting.key == "ATTENDANCE_CUTOFF_TIME").first()
@@ -85,7 +84,7 @@ def absen_pulang(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    today = datetime.now().date()
+    today = get_today_wib()
     attendance = (
         db.query(Attendance)
         .filter(Attendance.user_id == current_user.id, Attendance.tanggal == today)
@@ -112,7 +111,7 @@ def absen_pulang(
             detail=f"Anda berada di luar area kantor (jarak {int(jarak)} meter dari kantor. Batas: {int(allowed_radius)}m)",
         )
 
-    attendance.jam_pulang = datetime.now().time()
+    attendance.jam_pulang = get_now_wib().time()
     attendance.latitude_pulang = payload.latitude
     attendance.longitude_pulang = payload.longitude
     attendance.jarak_pulang = jarak
@@ -130,3 +129,19 @@ def riwayat_absen_saya(db: Session = Depends(get_db), current_user: User = Depen
         .order_by(Attendance.tanggal.desc())
         .all()
     )
+
+
+@router.get("/today", response_model=AttendanceOut)
+def get_today_attendance(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    today = get_today_wib()
+    attendance = (
+        db.query(Attendance)
+        .filter(Attendance.user_id == current_user.id, Attendance.tanggal == today)
+        .first()
+    )
+    if not attendance:
+        raise HTTPException(status_code=404, detail="Belum ada data absen hari ini")
+    return attendance
