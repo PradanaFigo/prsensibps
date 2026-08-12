@@ -5,14 +5,14 @@
       "use": "@vercel/static-build"
     },
     {
-      "src": "backend/app/main.py",
+      "src": "api/index.py",
       "use": "@vercel/python"
     }
   ],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/app/main.py"
+      "destination": "/api/index.py"
     },
     {
       "source": "/(.*)",
