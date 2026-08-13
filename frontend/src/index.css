@@ -996,7 +996,7 @@ textarea.input-field {
 
 .dashboard-columns {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 24px;
   align-items: flex-start;
   width: 100%;
@@ -1009,7 +1009,7 @@ textarea.input-field {
 }
 
 .dashboard-col-left {
-  flex: 1 1 500px;
+  flex: 1 1 0%;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1017,8 +1017,8 @@ textarea.input-field {
 }
 
 .dashboard-col-right {
-  flex: 0 0 350px;
-  width: 350px;
+  flex: 0 0 340px;
+  width: 340px;
   min-width: 0;
 }
 
