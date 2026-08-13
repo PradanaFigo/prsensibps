@@ -1100,6 +1100,34 @@ textarea.input-field {
   }
 }
 
+/* Recharts Legend Center Override for Mobile & Desktop */
+.recharts-legend-wrapper {
+  width: 100% !important;
+  left: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.recharts-default-legend {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  flex-wrap: wrap !important;
+}
+
+.recharts-legend-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin-right: 0 !important;
+  font-size: 12px !important;
+}
+
 .calendar-legend {
   display: flex;
   gap: 4px 8px;
