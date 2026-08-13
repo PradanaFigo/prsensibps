@@ -288,7 +288,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* CHARTS GRID */}
-      <div className="dashboard-grid" style={{ marginBottom: "24px" }}>
+      <div className="charts-grid" style={{ marginBottom: "24px" }}>
         <div className="card" style={{ marginBottom: 0 }}>
           <h3 style={{ marginBottom: "24px" }}>Kehadiran Mingguan</h3>
           <div style={{ height: "300px", width: "100%" }}>
