@@ -995,8 +995,8 @@ textarea.input-field {
 }
 
 .dashboard-columns {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 24px;
   align-items: flex-start;
   width: 100%;
@@ -1009,7 +1009,7 @@ textarea.input-field {
 }
 
 .dashboard-col-left {
-  flex: 1 1 0%;
+  width: 100%;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1017,8 +1017,7 @@ textarea.input-field {
 }
 
 .dashboard-col-right {
-  flex: 0 0 340px;
-  width: 340px;
+  width: 100%;
   min-width: 0;
 }
 
@@ -1045,15 +1044,14 @@ textarea.input-field {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px;
   width: 100%;
 }
 
 .calendar-day-cell {
-  aspect-ratio: 1 / 1;
-  min-height: 44px;
   border-radius: 8px;
-  padding: 4px 2px;
+  padding: 8px 2px;
+  min-height: 38px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1065,7 +1063,7 @@ textarea.input-field {
 }
 
 .calendar-empty-cell {
-  aspect-ratio: 1 / 1;
-  min-height: 44px;
+  border-radius: 8px;
+  min-height: 38px;
 }
 
