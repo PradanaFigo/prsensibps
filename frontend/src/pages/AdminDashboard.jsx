@@ -341,7 +341,7 @@ export default function AdminDashboard() {
           <p style={{ fontSize: 14, marginBottom: 20 }}>Kelola akun admin dan peserta magang</p>
           
           <form onSubmit={handleCreateUser} className="form-grid" style={{ marginBottom: "24px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: 0 }}>
               <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase" }}>Nama Lengkap</label>
               <input
                 placeholder="Nama Lengkap"
@@ -351,7 +351,7 @@ export default function AdminDashboard() {
                 required
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: 0 }}>
               <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase" }}>Username</label>
               <input
                 placeholder="Username"
@@ -362,7 +362,7 @@ export default function AdminDashboard() {
                 required
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", minWidth: 0 }}>
               <label style={{ fontSize: "12px", fontWeight: 600, color: "var(--text-muted)", textTransform: "uppercase" }}>Role</label>
               <Select
                 value={{ value: form.role, label: form.role === 'admin' ? 'Admin' : 'User' }}
@@ -379,8 +379,8 @@ export default function AdminDashboard() {
           </form>
           {userMsg && <div className="error-message" style={{ marginBottom: "20px" }}>{userMsg}</div>}
 
-          <div className="table-container" style={{ maxHeight: "300px", overflowY: "auto" }}>
-            <table>
+          <div className="table-container" style={{ maxHeight: "300px", overflowY: "auto", overflowX: "auto", width: "100%", maxWidth: "100%", display: "block", boxSizing: "border-box" }}>
+            <table style={{ width: "100%", minWidth: "440px", borderCollapse: "collapse" }}>
               <thead>
                 <tr>
                   <th style={{ width: "35%" }}>Nama</th>
@@ -394,10 +394,10 @@ export default function AdminDashboard() {
                   <tr key={u.id}>
                     <td style={{ fontWeight: 500 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                        <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#e2e8f0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700 }}>
+                        <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#e2e8f0", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 700, flexShrink: 0 }}>
                           {u.nama.substring(0, 2).toUpperCase()}
                         </div>
-                        {u.nama}
+                        <span style={{ whiteSpace: "nowrap" }}>{u.nama}</span>
                       </div>
                     </td>
                     <td>{u.username}</td>

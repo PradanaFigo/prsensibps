@@ -353,6 +353,10 @@ p {
   border: 1px solid rgba(226, 232, 240, 0.6);
   margin-bottom: 24px;
   transition: var(--transition);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 /* Stat Cards (Smile360 Style) */
@@ -434,7 +438,11 @@ p {
 /* Tables */
 .table-container {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  display: block;
 }
 
 table {
