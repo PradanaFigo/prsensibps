@@ -298,7 +298,7 @@ export default function AdminDashboard() {
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
                 <YAxis allowDecimals={false} domain={[0, 'dataMax']} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
                 <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
-                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+                <Legend align="center" verticalAlign="bottom" wrapperStyle={{ fontSize: '12px', paddingTop: '12px', width: '100%', display: 'flex', justifyContent: 'center' }} />
                 <Bar dataKey="hadir" name="Hadir" fill="#10b981" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="telat" name="Telat" fill="#c28f32" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="alpa" name="Alpa" fill="#ef4444" radius={[4, 4, 0, 0]} />
@@ -321,7 +321,7 @@ export default function AdminDashboard() {
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginTop: '16px', flexWrap: 'wrap', width: '100%' }}>
               {stats.composition_data.map(item => (
                 <div key={item.name} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#64748b' }}>
                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: item.color }}></div>
