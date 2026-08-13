@@ -994,6 +994,19 @@ textarea.input-field {
   display: none;
 }
 
+.absen-btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .absen-btn-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
 @media (min-width: 993px) {
   .dashboard-columns {
     display: grid !important;

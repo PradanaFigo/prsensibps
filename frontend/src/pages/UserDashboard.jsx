@@ -268,7 +268,7 @@ export default function UserDashboard() {
         <div className="dashboard-col-left">
 
           {/* Tombol Absen */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px" }}>
+          <div className="absen-btn-grid" style={{ marginBottom: "24px" }}>
             {/* Absen Masuk */}
             <div className="card" style={{ margin: 0, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div>
