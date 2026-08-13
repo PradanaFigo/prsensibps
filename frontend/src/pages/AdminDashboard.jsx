@@ -236,68 +236,12 @@ export default function AdminDashboard() {
         </div>
       )}
 
-      {showPasswordModal && (
-        <div style={{
-          position: "fixed", top: 0, left: 0, right: 0, bottom: 0, 
-          backgroundColor: "rgba(0,0,0,0.5)", zIndex: 1000, 
-          display: "flex", justifyContent: "center", alignItems: "center"
-        }}>
-          <div className="card" style={{ maxWidth: "400px", width: "90%", margin: "0 auto", animation: "slideUp 0.3s ease-out" }}>
-            <h3 style={{ marginBottom: 16 }}>Ganti Password</h3>
-            <form onSubmit={handleChangePassword}>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ display: "block", marginBottom: 4, fontSize: 14 }}>Password Lama</label>
-                <input
-                  type={showPwdModal1 ? "text" : "password"}
-                  className="input-field"
-                  style={{ width: "100%" }}
-                  value={pwdData.old_password}
-                  onChange={(e) => setPwdData({ ...pwdData, old_password: e.target.value })}
-                  required
-                />
-                <div style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--text-muted)" }}>
-                  <input type="checkbox" id="showPwd1" checked={showPwdModal1} onChange={(e) => setShowPwdModal1(e.target.checked)} />
-                  <label htmlFor="showPwd1" style={{ cursor: "pointer" }}>Tampilkan</label>
-                </div>
-              </div>
-              <div style={{ marginBottom: 20 }}>
-                <label style={{ display: "block", marginBottom: 4, fontSize: 14 }}>Password Baru</label>
-                <input
-                  type={showPwdModal2 ? "text" : "password"}
-                  className="input-field"
-                  style={{ width: "100%" }}
-                  value={pwdData.new_password}
-                  onChange={(e) => setPwdData({ ...pwdData, new_password: e.target.value })}
-                  required
-                />
-                <div style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--text-muted)" }}>
-                  <input type="checkbox" id="showPwd2" checked={showPwdModal2} onChange={(e) => setShowPwdModal2(e.target.checked)} />
-                  <label htmlFor="showPwd2" style={{ cursor: "pointer" }}>Tampilkan</label>
-                </div>
-              </div>
-              {pwdMsg && <div className="error-message">{pwdMsg}</div>}
-              <div style={{ display: "flex", gap: "8px" }}>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>Simpan</button>
-                <button type="button" className="btn-outline" style={{ flex: 1 }} onClick={() => setShowPasswordModal(false)}>Batal</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
       {/* ADMIN BANNER */}
       <div className="location-card-content" style={{ backgroundColor: "#fef3c7", color: "var(--primary-blue)", padding: "24px 32px", borderRadius: "var(--radius-md)", marginBottom: "24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <h3 style={{ margin: 0, fontWeight: 600 }}>Administrator Dashboard</h3>
           <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: "14px" }}>Kelola semua data presensi dan akun pengguna</p>
         </div>
-        <button 
-          className="btn-outline" 
-          style={{ borderColor: "rgba(194, 143, 50, 0.3)", color: "var(--primary-blue)", whiteSpace: "nowrap" }}
-          onClick={() => setShowPasswordModal(true)}
-        >
-          Ganti Password
-        </button>
       </div>
 
       {/* STAT CARDS */}

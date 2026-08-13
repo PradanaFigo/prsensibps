@@ -105,7 +105,7 @@ export default function AdminLogbook() {
       <div className="card" style={{ padding: "24px", marginBottom: "24px" }}>
         <div className="filter-group">
           <label style={{ fontWeight: 600, color: "var(--text-main)" }}>Filter Tanggal:</label>
-          <div style={{ width: "200px" }}>
+          <div style={{ width: "100%", maxWidth: "200px" }}>
             <DatePicker
               selected={filterDate}
               onChange={(d) => {
@@ -141,7 +141,7 @@ export default function AdminLogbook() {
             Tidak ada catatan logbook ditemukan untuk tanggal ini
           </div>
         ) : (
-          <div style={{ overflowX: "auto" }}>
+          <div className="table-container">
             <table className="table" style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ backgroundColor: "#f8fafc", borderBottom: "2px solid var(--border-color)" }}>
@@ -180,7 +180,7 @@ export default function AdminLogbook() {
         <p style={{ fontSize: 14, marginBottom: 20 }}>Pilih rentang tanggal, lalu unduh rekap logbook dalam berkas Excel</p>
         
         <div className="filter-group">
-          <div style={{ width: "200px" }}>
+          <div style={{ width: "100%", maxWidth: "200px" }}>
             <DatePicker
               selected={exportRange.tanggal_awal}
               onChange={(d) => setExportRange({ ...exportRange, tanggal_awal: d })}
@@ -190,7 +190,7 @@ export default function AdminLogbook() {
             />
           </div>
           <span style={{ color: "var(--text-muted)", fontWeight: "bold" }}>-</span>
-          <div style={{ width: "200px" }}>
+          <div style={{ width: "100%", maxWidth: "200px" }}>
             <DatePicker
               selected={exportRange.tanggal_akhir}
               onChange={(d) => setExportRange({ ...exportRange, tanggal_akhir: d })}

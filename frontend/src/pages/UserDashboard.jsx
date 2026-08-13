@@ -149,7 +149,7 @@ export default function UserDashboard() {
     ));
 
     for (let i = 0; i < firstDay; i++) {
-      days.push(<div key={`empty-${i}`} style={{ minHeight: '48px' }}></div>);
+      days.push(<div key={`empty-${i}`} className="calendar-empty-cell"></div>);
     }
 
     for (let d = 1; d <= daysInMonth; d++) {
@@ -161,19 +161,10 @@ export default function UserDashboard() {
       days.push(
         <div 
           key={d} 
+          className="calendar-day-cell"
           style={{ 
-            minHeight: '48px', 
             backgroundColor: styleInfo.bg, 
-            borderRadius: '6px', 
-            padding: '4px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
             border: isToday ? '2px solid var(--primary-blue)' : '1px solid transparent',
-            cursor: 'pointer',
-            transition: 'transform 0.2s',
-            position: 'relative'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.05)';
@@ -224,16 +215,16 @@ export default function UserDashboard() {
     const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
     return (
-      <div className="card" style={{ marginBottom: "24px" }}>
+      <div className="card calendar-card">
         <h3 style={{ marginBottom: "16px" }}>Rapor Kehadiran ({monthNames[currentMonth]} {currentYear})</h3>
-        <div style={{ display: "flex", gap: "10px", marginBottom: "20px", fontSize: "11px", color: "var(--text-muted)", flexWrap: "wrap", padding: "10px", backgroundColor: "#f8fafc", borderRadius: "8px" }}>
+        <div className="calendar-legend">
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}><div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#10b981" }}></div> Hadir</div>
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}><div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#f59e0b" }}></div> Telat</div>
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}><div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#3b82f6" }}></div> Izin</div>
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}><div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#ef4444" }}></div> Alpa</div>
           <div style={{ display: "flex", alignItems: "center", gap: "4px" }}><div style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#cbd5e1" }}></div> Libur/Belum</div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: "8px" }}>
+        <div className="calendar-grid">
           {header}
           {days}
         </div>
@@ -258,55 +249,6 @@ export default function UserDashboard() {
 
   return (
     <Layout title="Dashboard" role="user" userName={userName}>
-      {showPasswordModal && (
-        <div style={{
-          position: "fixed", top: 0, left: 0, right: 0, bottom: 0, 
-          backgroundColor: "rgba(0,0,0,0.5)", zIndex: 1000, 
-          display: "flex", justifyContent: "center", alignItems: "center"
-        }}>
-          <div className="card" style={{ maxWidth: "400px", width: "90%", margin: "0 auto", animation: "slideUp 0.3s ease-out" }}>
-            <h3 style={{ marginBottom: 16 }}>Ganti Password</h3>
-            <form onSubmit={handleChangePassword}>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ display: "block", marginBottom: 4, fontSize: 14 }}>Password Lama</label>
-                <input
-                  type={showPwdModal1 ? "text" : "password"}
-                  className="input-field"
-                  style={{ width: "100%" }}
-                  value={pwdData.old_password}
-                  onChange={(e) => setPwdData({ ...pwdData, old_password: e.target.value })}
-                  required
-                />
-                <div style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--text-muted)" }}>
-                  <input type="checkbox" id="showPwd1" checked={showPwdModal1} onChange={(e) => setShowPwdModal1(e.target.checked)} />
-                  <label htmlFor="showPwd1" style={{ cursor: "pointer" }}>Tampilkan</label>
-                </div>
-              </div>
-              <div style={{ marginBottom: 20 }}>
-                <label style={{ display: "block", marginBottom: 4, fontSize: 14 }}>Password Baru</label>
-                <input
-                  type={showPwdModal2 ? "text" : "password"}
-                  className="input-field"
-                  style={{ width: "100%" }}
-                  value={pwdData.new_password}
-                  onChange={(e) => setPwdData({ ...pwdData, new_password: e.target.value })}
-                  required
-                />
-                <div style={{ marginTop: "8px", display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--text-muted)" }}>
-                  <input type="checkbox" id="showPwd2" checked={showPwdModal2} onChange={(e) => setShowPwdModal2(e.target.checked)} />
-                  <label htmlFor="showPwd2" style={{ cursor: "pointer" }}>Tampilkan</label>
-                </div>
-              </div>
-              {pwdMsg && <div className="error-message">{pwdMsg}</div>}
-              <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end", marginTop: "16px" }}>
-                <button type="button" className="btn-outline" style={{ padding: "10px 24px", border: "1px solid #cbd5e1" }} onClick={() => setShowPasswordModal(false)}>Batal</button>
-                <button type="submit" className="btn-primary" style={{ padding: "10px 24px", width: "auto" }}>Simpan</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
       {/* Location Card Area (Membentang Penuh) */}
       <div className="location-card-content" style={{ backgroundColor: "#fef3c7", color: "var(--primary-blue)", padding: "32px", borderRadius: "var(--radius-md)", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
@@ -318,13 +260,6 @@ export default function UserDashboard() {
             <p style={{ margin: "4px 0 0", color: "var(--text-muted)", fontSize: "14px" }}>Pastikan Anda berada di area BPS saat absen</p>
           </div>
         </div>
-        <button 
-          className="btn-outline" 
-          style={{ borderColor: "rgba(194, 143, 50, 0.3)", color: "var(--primary-blue)", whiteSpace: "nowrap" }}
-          onClick={() => setShowPasswordModal(true)}
-        >
-          Ganti Password
-        </button>
       </div>
 
       <div className="dashboard-columns">
@@ -422,13 +357,11 @@ export default function UserDashboard() {
               </table>
             </div>
           </div>
-        </div>
 
-        {/* KOLOM KANAN (Kalender) */}
-        <div className="dashboard-col-right">
+          {/* Rapor Kehadiran (Kalender) - Selalu di Paling Bawah di Bawah Aktivitas Hari Ini */}
           {renderCalendar()}
+
         </div>
-        
       </div>
     </Layout>
   );

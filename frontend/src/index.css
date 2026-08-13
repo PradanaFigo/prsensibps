@@ -588,6 +588,11 @@ tr:last-child td {
 }
 
 /* React Select Overrides */
+.react-select-container {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 .react-select__control {
   border: 1px solid #cbd5e1 !important;
   border-radius: 8px !important;
@@ -595,6 +600,8 @@ tr:last-child td {
   background-color: white !important;
   transition: var(--transition) !important;
   cursor: pointer !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .react-select__control--is-focused {
@@ -626,8 +633,22 @@ tr:last-child td {
 }
 
 /* React Datepicker Overrides */
-.react-datepicker-wrapper {
-  width: 100%;
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+.react-datepicker__input-container input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+textarea.input-field {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .react-datepicker {
@@ -749,11 +770,24 @@ tr:last-child td {
   
   .dashboard-columns {
     flex-direction: column !important;
+    width: 100% !important;
+    gap: 20px !important;
   }
   
-  .dashboard-col-left, .dashboard-col-right {
-    flex: 1 1 100% !important;
-    max-width: 100%;
+  .dashboard-col-left {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+    order: 1 !important;
+  }
+  
+  .dashboard-col-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+    order: 2 !important;
   }
   
   .location-card-content {
@@ -791,6 +825,50 @@ tr:last-child td {
   }
 }
 
+@media (max-width: 992px) {
+  .dashboard-columns {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 20px !important;
+  }
+  
+  .dashboard-col-left {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+    order: 1 !important;
+  }
+  
+  .dashboard-col-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+    order: 2 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-grid {
+    gap: 4px !important;
+  }
+  .calendar-day-cell {
+    min-height: 36px !important;
+    border-radius: 6px !important;
+    padding: 2px 1px !important;
+  }
+  .calendar-empty-cell {
+    min-height: 36px !important;
+  }
+  .calendar-legend {
+    gap: 6px 10px !important;
+    justify-content: center !important;
+    padding: 8px 10px !important;
+    font-size: 10.5px !important;
+  }
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -814,6 +892,7 @@ tr:last-child td {
   flex-wrap: wrap;
   gap: 24px;
   align-items: flex-start;
+  width: 100%;
 }
 
 .dashboard-grid {
@@ -823,12 +902,62 @@ tr:last-child td {
 }
 
 .dashboard-col-left {
-  flex: 1 1 550px;
+  width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 .dashboard-col-right {
-  flex: 1 1 280px;
+  flex: 1 1 300px;
+  min-width: 0;
 }
+
+/* Calendar Precision Styles */
+.calendar-card {
+  margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 8px 12px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #f1f5f9;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.calendar-day-cell {
+  aspect-ratio: 1 / 1;
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.calendar-empty-cell {
+  aspect-ratio: 1 / 1;
+  min-height: 44px;
+}
+
