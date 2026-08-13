@@ -270,16 +270,16 @@ export default function UserDashboard() {
           {/* Tombol Absen */}
           <div className="absen-btn-grid" style={{ marginBottom: "24px" }}>
             {/* Absen Masuk */}
-            <div className="card" style={{ margin: 0, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="card absen-card" style={{ margin: 0, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: "14px", color: "var(--text-muted)", marginBottom: "8px" }}>Presensi masuk</div>
-                <div style={{ fontSize: "32px", fontWeight: 700, color: riwayatHariIni?.jam_masuk ? "var(--text-main)" : "var(--text-muted)" }}>
+                <div style={{ fontSize: "14px", color: "var(--text-muted)", marginBottom: "12px" }}>Presensi masuk</div>
+                <div style={{ fontSize: "36px", fontWeight: 700, color: riwayatHariIni?.jam_masuk ? "var(--text-main)" : "var(--text-muted)", marginBottom: "20px" }}>
                   {riwayatHariIni?.jam_masuk ? riwayatHariIni.jam_masuk.substring(0,5) : "--:--"}
                 </div>
               </div>
               <button 
                 className="btn-primary" 
-                style={{ marginTop: "24px" }}
+                style={{ width: "100%", height: "46px" }}
                 onClick={() => handleAbsen('masuk')}
                 disabled={isLoading || riwayatHariIni?.jam_masuk}
               >
@@ -288,16 +288,16 @@ export default function UserDashboard() {
             </div>
 
             {/* Absen Pulang */}
-            <div className="card" style={{ margin: 0, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div className="card absen-card" style={{ margin: 0, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div>
-                <div style={{ fontSize: "14px", color: "var(--text-muted)", marginBottom: "8px" }}>Presensi pulang</div>
-                <div style={{ fontSize: "32px", fontWeight: 700, color: riwayatHariIni?.jam_pulang ? "var(--text-main)" : "var(--text-muted)" }}>
+                <div style={{ fontSize: "14px", color: "var(--text-muted)", marginBottom: "12px" }}>Presensi pulang</div>
+                <div style={{ fontSize: "36px", fontWeight: 700, color: riwayatHariIni?.jam_pulang ? "var(--text-main)" : "var(--text-muted)", marginBottom: "20px" }}>
                   {riwayatHariIni?.jam_pulang ? riwayatHariIni.jam_pulang.substring(0,5) : "--:--"}
                 </div>
               </div>
               <button 
                 className="btn-primary" 
-                style={{ marginTop: "24px" }}
+                style={{ width: "100%", height: "46px" }}
                 onClick={() => handleAbsen('pulang')}
                 disabled={isLoading || !riwayatHariIni?.jam_masuk || riwayatHariIni?.jam_pulang}
               >
