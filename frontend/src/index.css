@@ -928,55 +928,47 @@ textarea.input-field {
   flex-wrap: wrap;
 }
 
-/* Date Range Pickers Side-By-Side Always */
+/* Date Range Pickers: Desktop original row layout, Mobile HP custom layout */
 .date-range-group {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
-  width: 100%;
+  flex-wrap: wrap;
 }
 
 .date-range-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 100%;
 }
 
 .date-range-item {
-  flex: 1;
-  min-width: 0;
+  width: 200px;
 }
 
 .date-range-separator {
-  font-weight: 700;
+  font-weight: bold;
   color: var(--text-muted);
-  flex-shrink: 0;
-  display: inline-block !important;
-}
-
-@media (min-width: 769px) {
-  .date-range-group {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .date-range-row {
-    width: auto;
-  }
-
-  .date-range-item {
-    width: 180px;
-    flex: none;
-  }
-
-  .export-btn {
-    width: auto !important;
-  }
 }
 
 @media (max-width: 768px) {
+  .date-range-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .date-range-row {
+    width: 100%;
+  }
+
+  .date-range-item {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+
   .export-btn {
     width: 100% !important;
   }
