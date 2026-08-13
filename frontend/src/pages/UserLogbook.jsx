@@ -209,9 +209,9 @@ export default function UserLogbook() {
                       <td style={{ whiteSpace: "nowrap", verticalAlign: "top" }}>
                         {new Date(log.tanggal).toLocaleDateString("id-ID", { weekday: 'short', day: 'numeric', month: 'short' })}
                       </td>
-                      <td style={{ whiteSpace: "pre-wrap" }}>{log.kegiatan}</td>
+                      <td style={{ whiteSpace: "pre-wrap", wordBreak: "break-word", overflowWrap: "anywhere" }}>{log.kegiatan}</td>
                       <td style={{ textAlign: "right", verticalAlign: "top" }}>
-                        <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end" }}>
+                        <div style={{ display: "flex", gap: "6px", justifyContent: "flex-end" }}>
                           <button className="btn-soft-warning" onClick={() => handleEditClick(log)}>Edit</button>
                           <button className="btn-soft-danger" onClick={() => handleDeleteLogbook(log.id)}>Hapus</button>
                         </div>

@@ -358,10 +358,13 @@ export default function UserDashboard() {
             </div>
           </div>
 
-          {/* Rapor Kehadiran (Kalender) - Selalu di Paling Bawah di Bawah Aktivitas Hari Ini */}
-          {renderCalendar()}
-
         </div>
+
+        {/* KOLOM KANAN (Kalender) - Di samping pada Desktop, di Paling Bawah pada Mobile HP */}
+        <div className="dashboard-col-right">
+          {renderCalendar()}
+        </div>
+
       </div>
     </Layout>
   );
