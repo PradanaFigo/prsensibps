@@ -179,31 +179,33 @@ export default function AdminLogbook() {
         <h3>Export Rekap Logbook</h3>
         <p style={{ fontSize: 14, marginBottom: 20 }}>Pilih rentang tanggal, lalu unduh rekap logbook dalam berkas Excel</p>
         
-        <div className="filter-group">
-          <div style={{ width: "100%", maxWidth: "200px" }}>
-            <DatePicker
-              selected={exportRange.tanggal_awal}
-              onChange={(d) => setExportRange({ ...exportRange, tanggal_awal: d })}
-              className="input-field"
-              placeholderText="dd/mm/yyyy"
-              dateFormat="dd/MM/yyyy"
-            />
-          </div>
-          <span style={{ color: "var(--text-muted)", fontWeight: "bold" }}>-</span>
-          <div style={{ width: "100%", maxWidth: "200px" }}>
-            <DatePicker
-              selected={exportRange.tanggal_akhir}
-              onChange={(d) => setExportRange({ ...exportRange, tanggal_akhir: d })}
-              className="input-field"
-              placeholderText="dd/mm/yyyy"
-              dateFormat="dd/MM/yyyy"
-              minDate={exportRange.tanggal_awal}
-            />
+        <div className="date-range-group">
+          <div className="date-range-row">
+            <div className="date-range-item">
+              <DatePicker
+                selected={exportRange.tanggal_awal}
+                onChange={(d) => setExportRange({ ...exportRange, tanggal_awal: d })}
+                className="input-field"
+                placeholderText="dd/mm/yyyy"
+                dateFormat="dd/MM/yyyy"
+              />
+            </div>
+            <span className="date-range-separator">-</span>
+            <div className="date-range-item">
+              <DatePicker
+                selected={exportRange.tanggal_akhir}
+                onChange={(d) => setExportRange({ ...exportRange, tanggal_akhir: d })}
+                className="input-field"
+                placeholderText="dd/mm/yyyy"
+                dateFormat="dd/MM/yyyy"
+                minDate={exportRange.tanggal_awal}
+              />
+            </div>
           </div>
           <button 
             type="button" 
-            className="btn-primary" 
-            style={{ display: "flex", alignItems: "center", gap: "8px", height: "42px" }} 
+            className="btn-primary export-btn" 
+            style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", height: "42px" }} 
             onClick={handleExportExcel}
           >
             <Download size={18} />
