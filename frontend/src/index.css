@@ -928,6 +928,10 @@ textarea.input-field {
   flex-wrap: wrap;
 }
 
+.filter-date-wrapper {
+  width: 200px;
+}
+
 /* Date Range Pickers: Desktop original row layout, Mobile HP custom layout */
 .date-range-group {
   display: flex;
@@ -952,6 +956,13 @@ textarea.input-field {
 }
 
 @media (max-width: 768px) {
+  .filter-date-wrapper,
+  .filter-date-wrapper input,
+  .filter-date-wrapper .react-datepicker-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
   .date-range-group {
     flex-direction: column;
     align-items: stretch;

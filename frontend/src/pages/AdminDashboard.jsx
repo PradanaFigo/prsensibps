@@ -379,14 +379,14 @@ export default function AdminDashboard() {
           </form>
           {userMsg && <div className="error-message" style={{ marginBottom: "20px" }}>{userMsg}</div>}
 
-          <div className="table-container" style={{ maxHeight: "300px", overflowY: "auto", overflowX: "auto", width: "100%", maxWidth: "100%", display: "block", boxSizing: "border-box" }}>
-            <table style={{ width: "100%", minWidth: "440px", borderCollapse: "collapse" }}>
+          <div className="table-container" style={{ maxHeight: "300px", overflowY: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr>
-                  <th style={{ width: "35%" }}>Nama</th>
+                  <th style={{ width: "30%" }}>Nama</th>
                   <th style={{ width: "25%" }}>Username</th>
                   <th style={{ width: "20%" }}>Role</th>
-                  <th style={{ width: "20%" }}>Aksi</th>
+                  <th style={{ width: "25%", textAlign: "right" }}>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -402,9 +402,9 @@ export default function AdminDashboard() {
                     </td>
                     <td>{u.username}</td>
                     <td>{u.role === "admin" ? "Admin" : "User"}</td>
-                    <td>
+                    <td style={{ textAlign: "right" }}>
                       {!u.is_deleted && (
-                        <div style={{ display: "flex", gap: "8px" }}>
+                        <div style={{ display: "flex", gap: "6px", justifyContent: "flex-end" }}>
                           <button className="btn-soft-warning" onClick={() => handleResetPassword(u.id, u.nama)}>Reset</button>
                           <button className="btn-soft-danger" onClick={() => handleDeleteUser(u.id, u.nama)}>Hapus</button>
                         </div>

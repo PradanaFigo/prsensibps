@@ -105,7 +105,7 @@ export default function AdminLogbook() {
       <div className="card" style={{ padding: "24px", marginBottom: "24px" }}>
         <div className="filter-group">
           <label style={{ fontWeight: 600, color: "var(--text-main)" }}>Filter Tanggal:</label>
-          <div style={{ width: "100%", maxWidth: "200px" }}>
+          <div className="filter-date-wrapper">
             <DatePicker
               selected={filterDate}
               onChange={(d) => {
