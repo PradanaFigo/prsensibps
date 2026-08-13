@@ -1004,12 +1004,12 @@ textarea.input-field {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
 .dashboard-col-left {
-  width: 100%;
+  flex: 1 1 500px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1017,7 +1017,8 @@ textarea.input-field {
 }
 
 .dashboard-col-right {
-  flex: 1 1 300px;
+  flex: 0 0 350px;
+  width: 350px;
   min-width: 0;
 }
 
