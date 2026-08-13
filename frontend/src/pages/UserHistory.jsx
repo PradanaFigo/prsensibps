@@ -53,8 +53,8 @@ export default function UserHistory() {
                 ) : (
                   history.map((record) => (
                     <tr key={record.id}>
-                      <td style={{ fontWeight: 500 }}>
-                        {new Date(record.tanggal).toLocaleDateString("id-ID", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                      <td style={{ fontWeight: 500, whiteSpace: "nowrap" }}>
+                        {new Date(record.tanggal).toLocaleDateString("id-ID", { day: 'numeric', month: 'short', year: 'numeric' })}
                       </td>
                       <td>{record.jam_masuk ? record.jam_masuk.substring(0, 5) : "-"}</td>
                       <td>{record.jam_pulang ? record.jam_pulang.substring(0, 5) : "-"}</td>
