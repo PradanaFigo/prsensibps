@@ -1020,7 +1020,7 @@ textarea.input-field {
 @media (min-width: 993px) {
   .dashboard-columns {
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 340px !important;
+    grid-template-columns: minmax(0, 1fr) 380px !important;
     gap: 24px;
     align-items: flex-start;
     width: 100%;
@@ -1035,12 +1035,12 @@ textarea.input-field {
   }
 
   .dashboard-col-right {
-    width: 340px !important;
+    width: 380px !important;
     min-width: 0;
   }
 
   .calendar-card {
-    padding: 20px 12px !important;
+    padding: 24px 20px !important;
     margin-bottom: 24px;
     width: 100%;
     box-sizing: border-box;
@@ -1074,7 +1074,7 @@ textarea.input-field {
   }
 
   .calendar-card {
-    padding: 16px 10px !important;
+    padding: 16px 12px !important;
     margin-bottom: 16px;
     width: 100%;
     box-sizing: border-box;
@@ -1089,12 +1089,12 @@ textarea.input-field {
 
 .calendar-legend {
   display: flex;
-  gap: 4px 8px;
-  margin-bottom: 14px;
-  font-size: 10.5px;
+  gap: 6px 12px;
+  margin-bottom: 16px;
+  font-size: 11px;
   color: var(--text-muted);
   flex-wrap: wrap;
-  padding: 6px 10px;
+  padding: 8px 14px;
   background-color: #f8fafc;
   border-radius: 8px;
   border: 1px solid #f1f5f9;
@@ -1103,15 +1103,15 @@ textarea.input-field {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 3px;
+  gap: 5px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .calendar-day-cell {
-  border-radius: 6px;
-  padding: 4px 0;
-  min-height: 34px;
+  border-radius: 8px;
+  padding: 6px 0;
+  min-height: 38px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1121,12 +1121,12 @@ textarea.input-field {
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .calendar-empty-cell {
-  border-radius: 6px;
-  min-height: 34px;
+  border-radius: 8px;
+  min-height: 38px;
   width: 100%;
 }
 
