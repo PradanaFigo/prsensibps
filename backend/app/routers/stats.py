@@ -68,43 +68,47 @@ def get_admin_stats(db: Session = Depends(get_db), admin_user = Depends(require_
     izin_minggu_lalu = 0
     alpa_minggu_lalu = 0
     
-    kehadiran_mingguan = []
-    
-    if today.weekday() == 0:
-        last_monday = today - timedelta(days=7)
-    else:
-        last_monday = today - timedelta(days=today.weekday())
+    # Current week (Monday to Friday)
+    start_of_week = today - timedelta(days=today.weekday())
     
     day_names = ["Sen", "Sel", "Rab", "Kam", "Jum"]
+    kehadiran_mingguan = []
+    
     for i in range(5):
-        day = last_monday + timedelta(days=i)
+        day = start_of_week + timedelta(days=i)
         
-        hadir = db.query(Attendance).filter(
-            Attendance.tanggal == day,
-            Attendance.status == AttendanceStatusEnum.hadir
-        ).count()
+        if day > today:
+            hadir = 0
+            telat = 0
+            izin = 0
+            alpa = 0
+        else:
+            hadir = db.query(Attendance).filter(
+                Attendance.tanggal == day,
+                Attendance.status == AttendanceStatusEnum.hadir
+            ).count()
 
-        telat = db.query(Attendance).filter(
-            Attendance.tanggal == day,
-            Attendance.status == AttendanceStatusEnum.telat
-        ).count()
-        
-        izin = db.query(LeaveRequest).filter(
-            LeaveRequest.tanggal == day,
-            LeaveRequest.status_approval == LeaveStatusEnum.disetujui
-        ).count()
-        
-        alpa = max(0, total_peserta - hadir - telat - izin)
-        
+            telat = db.query(Attendance).filter(
+                Attendance.tanggal == day,
+                Attendance.status == AttendanceStatusEnum.telat
+            ).count()
+            
+            izin = db.query(LeaveRequest).filter(
+                LeaveRequest.tanggal == day,
+                LeaveRequest.status_approval == LeaveStatusEnum.disetujui
+            ).count()
+            
+            alpa = max(0, total_peserta - hadir - telat - izin)
+            
         kehadiran_mingguan.append(
             WeeklyData(name=day_names[i], hadir=hadir, telat=telat, izin=izin, alpa=alpa)
         )
         
-    komposisi_hari_ini = [
-        CompositionData(name="Hadir", value=hadir_hari_ini, color="#4ade80"),
-        CompositionData(name="Telat", value=telat_hari_ini, color="#fbbf24"),
-        CompositionData(name="Izin", value=izin_hari_ini, color="#60a5fa"),
-        CompositionData(name="Alpa", value=alpa_hari_ini, color="#f87171"),
+    komposisi_bulan_ini = [
+        CompositionData(name="Hadir", value=hadir_bulan_ini, color="#4ade80"),
+        CompositionData(name="Telat", value=telat_bulan_ini, color="#fbbf24"),
+        CompositionData(name="Izin", value=izin_bulan_ini, color="#60a5fa"),
+        CompositionData(name="Alpa", value=alpa_bulan_ini, color="#f87171"),
     ]
     
     return AdminDashboardStats(
@@ -114,7 +118,7 @@ def get_admin_stats(db: Session = Depends(get_db), admin_user = Depends(require_
         izin_hari_ini=izin_hari_ini,
         alpa_hari_ini=alpa_hari_ini,
         weekly_data=kehadiran_mingguan,
-        composition_data=komposisi_hari_ini
+        composition_data=komposisi_bulan_ini
     )
 
 @router.get("/user", response_model=UserDashboardStats)

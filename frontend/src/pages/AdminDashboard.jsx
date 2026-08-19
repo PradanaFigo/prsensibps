@@ -342,7 +342,7 @@ export default function AdminDashboard() {
         </div>
 
         <div className="card" style={{ marginBottom: 0 }}>
-          <h3 style={{ marginBottom: "24px" }}>Komposisi Kehadiran</h3>
+          <h3 style={{ marginBottom: "24px" }}>Komposisi Kehadiran (Bulan Ini)</h3>
           <div style={{ height: "300px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <ResponsiveContainer width="100%" height="80%">
               <PieChart>
@@ -362,7 +362,7 @@ export default function AdminDashboard() {
                 </div>
               ))}
               {stats.composition_data.every(item => item.value === 0) && (
-                <div style={{ fontSize: '12px', color: '#94a3b8' }}>Belum ada data kehadiran hari ini</div>
+                <div style={{ fontSize: '12px', color: '#94a3b8' }}>Belum ada data kehadiran bulan ini</div>
               )}
             </div>
           </div>
