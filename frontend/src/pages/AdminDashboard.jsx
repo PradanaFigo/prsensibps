@@ -11,6 +11,39 @@ import Layout from "../components/Layout.jsx";
 const radiusTop = (x, y, width, height) => `M${x},${y + height} L${x},${y + 4} Q${x},${y} ${x + 4},${y} L${x + width - 4},${y} Q${x + width},${y} ${x + width},${y + 4} L${x + width},${y + height} Z`;
 const flatRect = (x, y, width, height) => `M${x},${y} L${x + width},${y} L${x + width},${y + height} L${x},${y + height} Z`;
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const filteredPayload = payload.filter((item) => item.value > 0);
+    if (filteredPayload.length === 0) return null;
+    return (
+      <div style={{ backgroundColor: "#ffffff", padding: "10px 14px", borderRadius: "8px", boxShadow: "0 4px 12px rgba(0,0,0,0.15)", border: "1px solid #e2e8f0" }}>
+        <p style={{ margin: 0, fontWeight: 700, color: "#1e293b", marginBottom: "6px", fontSize: "13px" }}>{label}</p>
+        {filteredPayload.map((entry, index) => (
+          <p key={`item-${index}`} style={{ margin: "3px 0", color: entry.fill || entry.color, fontSize: "12px", fontWeight: 600 }}>
+            {entry.name}: {entry.value}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
+
+const CustomPieTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0];
+    if (!data || data.value === 0) return null;
+    return (
+      <div style={{ backgroundColor: "#ffffff", padding: "8px 12px", borderRadius: "8px", boxShadow: "0 4px 12px rgba(0,0,0,0.15)", border: "1px solid #e2e8f0" }}>
+        <p style={{ margin: 0, color: data.payload?.color || data.color, fontSize: "12px", fontWeight: 600 }}>
+          {data.name}: {data.value}
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
     total_peserta: 0,
@@ -297,7 +330,7 @@ export default function AdminDashboard() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
                 <YAxis allowDecimals={false} domain={[0, 'dataMax']} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
-                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                <Tooltip content={<CustomTooltip />} cursor={{ fill: '#f8fafc' }} />
                 <Legend align="center" verticalAlign="bottom" wrapperStyle={{ fontSize: '12px', paddingTop: '12px', width: '100%', display: 'flex', justifyContent: 'center' }} />
                 <Bar dataKey="hadir" name="Hadir" fill="#10b981" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="telat" name="Telat" fill="#c28f32" radius={[4, 4, 0, 0]} />
@@ -313,21 +346,24 @@ export default function AdminDashboard() {
           <div style={{ height: "300px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
             <ResponsiveContainer width="100%" height="80%">
               <PieChart>
-                <Pie data={stats.composition_data} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value">
-                  {stats.composition_data.map((entry, index) => (
+                <Pie data={stats.composition_data.filter(item => item.value > 0)} innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value">
+                  {stats.composition_data.filter(item => item.value > 0).map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip />
+                <Tooltip content={<CustomPieTooltip />} />
               </PieChart>
             </ResponsiveContainer>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginTop: '16px', flexWrap: 'wrap', width: '100%' }}>
-              {stats.composition_data.map(item => (
+              {stats.composition_data.filter(item => item.value > 0).map(item => (
                 <div key={item.name} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#64748b' }}>
                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: item.color }}></div>
-                  {item.name}
+                  {item.name}: {item.value}
                 </div>
               ))}
+              {stats.composition_data.every(item => item.value === 0) && (
+                <div style={{ fontSize: '12px', color: '#94a3b8' }}>Belum ada data kehadiran hari ini</div>
+              )}
             </div>
           </div>
         </div>
